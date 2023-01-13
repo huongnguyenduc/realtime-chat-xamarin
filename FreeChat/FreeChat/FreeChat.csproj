@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Remove="Resources\Images\alfredo.jpg" />
+		<None Remove="Resources\Images\carelle.jpg" />
+		<None Remove="Resources\Images\john.jpg" />
+		<None Remove="Resources\Images\rea.jpg" />
+		<None Remove="Resources\Images\rebeca.jpg" />
+		<None Remove="Validations\" />
+		<None Remove="ReactiveUI.Validation" />
+		<None Remove="FluentValidation" />
+		<None Remove="modernhttpclient" />
+		<None Remove="Refit" />
+		<None Remove="fusillade" />
+		<None Remove="Polly" />
+		<None Remove="Xam.Plugin.Connectivity" />
+		<None Remove="Acr.UserDialogs" />
+		<None Remove="Newtonsoft.Json" />
+		<None Remove="Xamarin.CommunityToolkit" />
+		<None Remove="SocketIOClient" />
+		<None Remove="Xamarin.MediaGallery" />
+		<None Remove="Utils\" />
+		<None Remove="WebRTCme.Middleware.Xamarin" />
+		<None Remove="WebRTCme" />
+		<None Remove="Microsoft.Extensions.DependencyInjection.Abstractions" />
+		<None Remove="Ardalis.Result" />
+		<None Remove="Microsoft.Extensions.Logging.Abstractions" />
+		<None Remove="Microsoft.AspNetCore.SignalR.Client.Core" />
+		<None Remove="Prism.Core" />
+		<None Remove="Prism.Unity.Forms" />
+		<None Remove="Rg.Plugins.Popup" />
+		<None Remove="Xamarin.Agora.Full.Forms" />
+		<None Remove="Plugin.Permissions" />
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\Images\alfredo.jpg" />
+		<EmbeddedResource Include="Resources\Images\carelle.jpg" />
+		<EmbeddedResource Include="Resources\Images\john.jpg" />
+		<EmbeddedResource Include="Resources\Images\rea.jpg" />
+		<EmbeddedResource Include="Resources\Images\rebeca.jpg" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.1.0" />
+		<PackageReference Include="Humanizer.Core" Version="2.14.1" />
+		<PackageReference Include="ReactiveUI.Fody" Version="18.3.1" />
+		<PackageReference Include="ReactiveUI.XamForms" Version="18.3.1" />
+		<PackageReference Include="Splat" Version="14.4.1" />
+		<PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+		<PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
+		<PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+		<PackageReference Include="XamEffects" Version="1.6.3" />
+		<PackageReference Include="ReactiveUI.Validation" Version="3.0.1" />
+		<PackageReference Include="FluentValidation" Version="11.3.0" />
+		<PackageReference Include="Refit" Version="6.3.2" />
+		<PackageReference Include="fusillade" Version="2.4.47" />
+		<PackageReference Include="Polly" Version="7.2.3" />
+		<PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+		<PackageReference Include="Acr.UserDialogs" Version="7.1.0.483" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.5" />
+		<PackageReference Include="SocketIOClient" Version="3.0.6" />
+		<PackageReference Include="Xamarin.MediaGallery" Version="2.1.2" />
+		<PackageReference Include="Ardalis.Result" Version="4.1.0" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="7.0.1" />
+		<PackageReference Include="Prism.Unity.Forms" Version="8.1.97" />
+		<PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
+		<PackageReference Include="Xamarin.Agora.Full.Forms" Version="3.7.1" />
+		<PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Models\Models.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Update="Resources\TextResources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>TextResources.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Views\DataTemplates\MesageISentTemplate.xaml.cs">
+			<DependentUpon>MesageISentTemplate.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Pages\SettingsPage.xaml.cs">
+			<DependentUpon>SettingsPage.xaml</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\TextResources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>TextResources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Styles\Colors.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Styles\ControlStyles.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Styles\Fonts.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\CustomControls\FloatingButton.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\CustomControls\MessageBubble.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\CustomControls\ToggleButton.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\DataTemplates\MesageISentTemplate.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\DataTemplates\MessagePeerSentTemplate.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\DataTemplates\SimpleUserProfileTemplate.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Pages\BaseTabbedPage.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Pages\ConversationsPage.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Pages\SettingsPage.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Pages\MessagesPage.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="PlatformSpecifics\" />
+		<Folder Include="Validations\" />
+		<Folder Include="Utils\" />
+	</ItemGroup>
+</Project>

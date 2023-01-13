@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BaseTabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+             xmlns:textRes="clr-namespace:FreeChat.Resources"
+             Title="{x:Static textRes:TextResources.AppName}"
+             xmlns:root="clr-namespace:FreeChat"
+             BindingContext="{x:Static root:AppLocator.SettingsViewModel}"
+             xmlns:ffimageTransform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:ffimageLoader="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:local="clr-namespace:FreeChat.Views.Pages"
+             x:Class="FreeChat.Views.Pages.SettingsPage"
+                      x:Name="settingsPage"
+                      TabSelectedIndex="1">
+    <Shell.TitleView>
+        <Grid>
+            <Label Text="{Binding Title, Source={x:Reference settingsPage}}"
+                   Style="{StaticResource PageTitleLabel}">
+            </Label>
+        </Grid>
+    </Shell.TitleView>
+
+    <local:BaseTabbedPage.ViewContent>
+        <StackLayout Padding="20" BackgroundColor="#E9E9E9" VerticalOptions="FillAndExpand">
+            <Label Text="Settings" FontAttributes="Bold"  HorizontalOptions="CenterAndExpand" VerticalOptions="Start" />
+            <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
+            <Grid.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android" Value="0,15"/>
+                    <On Platform="iOS" Value="0,5"/>
+                </OnPlatform>
+            </Grid.Margin>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>                                        
+            </Grid.ColumnDefinitions>
+
+            <Grid WidthRequest="100"
+                  Margin="10,0,5,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <ffimageLoader:CachedImage Grid.ColumnSpan="2"
+                                           Grid.RowSpan="2"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           HeightRequest="{OnPlatform Android=100, iOS=80}"
+                                           WidthRequest="{OnPlatform Android=100, iOS=80}"
+                                           Source="{Binding UserProfile.ProfilePic}">
+                    
+                    <ffimageLoader:CachedImage.Transformations>
+                        <ffimageTransform:CircleTransformation />
+                    </ffimageLoader:CachedImage.Transformations>
+                </ffimageLoader:CachedImage>
+
+                <Label Text="{StaticResource FontAwesomeCircle}"
+                       FontFamily="{StaticResource FontAwesome}"
+                       Grid.Column="1" Grid.Row="1"
+                       IsVisible="{Binding UserProfile.IsOnline}"
+                       FontSize="Caption"
+                       Margin="0,0,8,8"
+                       TextColor="{StaticResource ConnectedColor}">
+                </Label>
+            </Grid>
+            
+            <StackLayout Grid.Column="1" Spacing="5"
+                         VerticalOptions="Center">
+                
+                <Label FontFamily="{StaticResource QuickSandBold}"
+                       LineBreakMode="TailTruncation">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding UserProfile.Name}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                
+                <Label Text="{Binding UserProfile.Bio}"
+                        TextColor="{StaticResource SecondaryTextColor}"
+                        LineBreakMode="TailTruncation"
+                       MaxLines="3"
+                        FontFamily="{StaticResource QuickSandRegular}"/>
+            </StackLayout>
+        </Grid>
+            <FlexLayout VerticalOptions="FillAndExpand" Direction="Column">
+                <Label Text="Account Settings" />
+                <Frame CornerRadius="200" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Start"
+                   HasShadow="True"
+                   Margin="0,16,0,16"
+                   IsClippedToBounds="True"
+                   Padding="0">
+                    <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding UpdateProfileSelectedCommand}" />
+                            </Frame.GestureRecognizers>
+                        <StackLayout Orientation="Horizontal" Padding="20,12,20,12" BackgroundColor="White">
+                            <Label Style="{StaticResource FontAwesomeLabel}"
+                                    Text="{StaticResource FontAwesomeCircleUser}"
+                                    FontSize="Title"
+                                    TextColor="Black"
+                                    HorizontalOptions="Center"
+                                   Margin="0,4,10,0"
+                                    VerticalOptions="CenterAndExpand"/>
+                            <Label Text="Update Profile" FontSize="20" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
+                            <Label Style="{StaticResource FontAwesomeLabel}"
+                                    Text="{StaticResource FontAwesomeChevronRight}"
+                                    FontSize="Subtitle"
+                                    TextColor="Black"
+                                    HorizontalOptions="End"
+                                   Margin="0,0,10,0"
+                                    VerticalOptions="Center"/>
+                        </StackLayout>
+                </Frame>
+                <Button
+                    Text="Sign out"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="EndAndExpand"
+                    CornerRadius="20"
+                    TextColor="White"
+                
+                    FontAttributes="Bold"
+                    BackgroundColor="{StaticResource AccentColor}"
+                    Command="{Binding SignOutCommand}"/>
+            </FlexLayout>
+            
+        </StackLayout>
+    </local:BaseTabbedPage.ViewContent>
+</local:BaseTabbedPage>

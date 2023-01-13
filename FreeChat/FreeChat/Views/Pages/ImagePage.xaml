@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:ffimageLoader="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                         xmlns:ffimageTransform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    x:Class="FreeChat.Views.Pages.ImagePage">
+    <!--You can set an animation in the xaml file or in the csharp code behind-->
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <!--You can use any elements here which are extended from Xamarin.Forms.View-->
+    <StackLayout 
+        VerticalOptions="Center" 
+        HorizontalOptions="Center" 
+        Padding="20, 20, 20, 20">
+        <ffimageLoader:CachedImage
+                                          HeightRequest="300"
+                                           WidthRequest="300"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           
+                                           Source="{Binding Url}">
+                        <ffimageLoader:CachedImage.Transformations>
+                            <ffimageTransform:CornersTransformation CornersTransformType="AllRounded" TopLeftCornerSize="10" />
+                        </ffimageLoader:CachedImage.Transformations>
+                        <ffimageLoader:CachedImage.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="Android" Value="4,4,0,0"/>
+                                <On Platform="iOS" Value="5"/>
+                            </OnPlatform>
+                        </ffimageLoader:CachedImage.Margin>
+                    </ffimageLoader:CachedImage>
+    </StackLayout>
+</pages:PopupPage>
+
+

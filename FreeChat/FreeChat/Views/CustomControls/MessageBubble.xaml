@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pancakeView:PancakeView xmlns="http://xamarin.com/schemas/2014/forms" 
+                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                         mc:Ignorable="d"
+                         xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                         xmlns:local="clr-namespace:FreeChat.Views.CustomControls"
+                         xmlns:ffimageLoader="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                         xmlns:ffimageTransform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                         xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
+                         x:Class="FreeChat.Views.CustomControls.MessageBubble"
+                         x:Name="bubble_fdasdl"
+                         Style="{StaticResource LightShadowPancakeViewStyle}"
+                         xmlns:resources="clr-namespace:FreeChat.Resources"
+             CornerRadius="15"
+                         Padding="5">
+
+    <Grid>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid IsVisible="{Binding Converter={StaticResource IsNullValueConverter}}"
+              BindingContext="{Binding ReplyTo}"
+              VerticalOptions="Start"
+              Margin="5"
+              xe:Commands.Tap="{Binding ReplyTappedCommand, Source={x:Reference bubble_fdasdl}}"
+              xe:TouchEffect.Color="LightGray"
+              xe:Commands.TapParameter="{Binding .}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <BoxView WidthRequest="3" BackgroundColor="White">
+                <BoxView.Triggers>
+                    
+                    <DataTrigger TargetType="BoxView"
+                                 Binding="{Binding BindingContext.ISent, Source={x:Reference bubble_fdasdl}}"
+                                 Value="False">
+                        <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}"/>
+                    </DataTrigger>
+                </BoxView.Triggers>
+            </BoxView>
+            <BoxView BackgroundColor="{StaticResource LightDarkWhite}" Opacity="0.1"
+                     Grid.Column="1" Margin="-7,0,0,0">
+                <BoxView.Triggers>
+                    <DataTrigger TargetType="BoxView"
+                                 Binding="{Binding BindingContext.ISent, Source={x:Reference bubble_fdasdl}}"
+                                 Value="False">
+                        <Setter Property="Opacity" Value="1"/>
+                    </DataTrigger>
+                </BoxView.Triggers>
+            </BoxView>
+
+            <StackLayout Grid.Column="1" Margin="-5,0,0,0">
+                
+                <Label FontFamily="{StaticResource QuickSandBold}"
+                                           LineBreakMode="TailTruncation"
+                                           Margin="10,3,10,5"
+                       TextColor="White">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Sender.Name}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label"
+                                     Binding="{Binding BindingContext.ISent, Source={x:Reference bubble_fdasdl}}"
+                                     Value="False">
+                            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"/>
+                            <Setter Property="Text" Value="{x:Static resources:TextResources.You}"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                
+                <Label Text="{Binding Content}"
+                       TextColor="White"
+                       LineBreakMode="TailTruncation"
+                       Margin="10,-10,10,10">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label"
+                                     Binding="{Binding BindingContext.ISent, Source={x:Reference bubble_fdasdl}}"
+                                     Value="False">
+                            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+            </StackLayout>
+        </Grid>
+        <!--<CollectionView ItemsSource="{Binding BindingContext.Images, Source={x:Reference bubble_fdasdl}}">
+            <CollectionView.ItemsLayout>
+               <GridItemsLayout Orientation="Vertical"
+                                Span="3" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                      <ffimageLoader:CachedImage HeightRequest="80"
+                                           WidthRequest="80"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="Center"
+                                           Source="{Binding Url}">
+                        <ffimageLoader:CachedImage.Transformations>
+                            <ffimageTransform:CornersTransformation CornersTransformType="AllRounded" TopLeftCornerSize="10" />
+                        </ffimageLoader:CachedImage.Transformations>
+
+                        <ffimageLoader:CachedImage.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="Android" Value="7,0,0,0"/>
+                                <On Platform="iOS" Value="5"/>
+                            </OnPlatform>
+                        </ffimageLoader:CachedImage.Margin>
+                    </ffimageLoader:CachedImage>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>-->
+        <FlexLayout
+            BindingContext="{Binding BindingContext.Images, Source={x:Reference bubble_fdasdl}}"
+            IsVisible="{Binding Converter={StaticResource IsListEmptyConverter}}"
+            Direction="Row"
+            JustifyContent="End"
+            Wrap="Wrap"
+            BindableLayout.ItemsSource="{Binding BindingContext.Images, Source={x:Reference bubble_fdasdl}}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                      <ffimageLoader:CachedImage
+                                           HeightRequest="75"
+                                           WidthRequest="75"
+                                           HorizontalOptions="End"
+                                           VerticalOptions="Start"
+                                           
+                                           Source="{Binding Url}">
+                          <ffimageLoader:CachedImage.GestureRecognizers>
+                              <TapGestureRecognizer Command="{Binding ImageTappedCommand, Source={x:Reference bubble_fdasdl}}" CommandParameter="{Binding .}" />
+
+                          </ffimageLoader:CachedImage.GestureRecognizers>
+                        <ffimageLoader:CachedImage.Transformations>
+                            <ffimageTransform:CornersTransformation CornersTransformType="AllRounded" TopLeftCornerSize="10" />
+                        </ffimageLoader:CachedImage.Transformations>
+                        <ffimageLoader:CachedImage.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="Android" Value="4,4,0,0"/>
+                                <On Platform="iOS" Value="5"/>
+                            </OnPlatform>
+                        </ffimageLoader:CachedImage.Margin>
+                    </ffimageLoader:CachedImage>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+            <FlexLayout.Triggers>
+                <DataTrigger TargetType="FlexLayout"
+                                     Binding="{Binding BindingContext.ISent, Source={x:Reference bubble_fdasdl}}"
+                                     Value="False">
+                            <Setter Property="JustifyContent" Value="Start"/>
+                        </DataTrigger>
+
+            </FlexLayout.Triggers>
+        </FlexLayout>
+        <Label
+            BindingContext="{Binding Text, Source={x:Reference bubble_fdasdl}}"
+            IsVisible="{Binding Converter={StaticResource IsStringEmptyConverter}}"
+            Text="{Binding Text, Source={x:Reference bubble_fdasdl}}"
+            Grid.Row="1"
+            Margin="10,0,10,10"
+            TextColor="{Binding TextColor, Source={x:Reference bubble_fdasdl}}"
+            FontFamily="{StaticResource QuickSandRegular}"/>
+        
+    </Grid>
+    
+</pancakeView:PancakeView>

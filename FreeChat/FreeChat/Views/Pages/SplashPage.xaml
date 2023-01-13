@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<local:BasePage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:FreeChat.Views.Pages"
+    xmlns:root="clr-namespace:FreeChat"
+    xmlns:form="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    BindingContext="{x:Static root:AppLocator.SplashViewModel}"
+    x:Class="FreeChat.Views.Pages.SplashPage">
+    <ContentPage.Behaviors>
+       <xct:EventToCommandBehavior EventName="Appearing" Command="{Binding NavigateCommand}" />
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+        <form:AnimationView
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    AutoPlay="True"
+                    IsEnabled="True"
+                    RepeatMode="Infinite"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    Scale="0.7"
+                    Animation="chat.json"/>
+    </ContentPage.Content>
+</local:BasePage>
+

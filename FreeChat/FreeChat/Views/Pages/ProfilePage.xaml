@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<local:BasePage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:FreeChat.Views.Pages"
+    xmlns:root="clr-namespace:FreeChat"
+    xmlns:customControls="clr-namespace:FreeChat.Views.CustomControls"
+    BindingContext="{x:Static root:AppLocator.ProfileViewModel}"
+    x:Name="profilePage"
+    xmlns:ffimageTransform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:ffimageLoader="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    x:Class="FreeChat.Views.Pages.ProfilePage">
+    <ContentPage.Content>
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid VerticalOptions="Start" Margin="0,16,0,0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <customControls:FloatingButton Margin="5,0,0,0"
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="Center" 
+                                               CornerRadius="90"
+                                               HeightRequest="40" WidthRequest="40"
+                                               IconSize="25"
+                                               PressedCommand="{Binding Source={x:Reference profilePage}, Path=BackCommand}"
+                                               Icon="{StaticResource FontAwesomeChevronLeft}"
+                                               BackgroundColor="{StaticResource PrimaryColor}" 
+                                               IconColor="{StaticResource AccentColor}">
+                </customControls:FloatingButton>
+                <Label Text="User Profile" VerticalOptions="Center"
+                             HorizontalOptions="Center" FontAttributes="Bold" FontSize="Subtitle" />
+
+            </Grid>
+
+            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                
+                <StackLayout HorizontalOptions="FillAndExpand"
+                                           VerticalOptions="CenterAndExpand">
+                <ffimageLoader:CachedImage 
+                                           HeightRequest="150"
+                                           WidthRequest="150"
+                    
+                                           Source="{Binding Avatar}">
+                    <ffimageLoader:CachedImage.Transformations>
+                        <ffimageTransform:CircleTransformation />
+                    </ffimageLoader:CachedImage.Transformations>
+                </ffimageLoader:CachedImage>
+                    <Label Text="Change user avatar" HorizontalOptions="Center" FontAttributes="Bold" TextColor="MediumBlue">
+                           <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PickImageCommand}" />
+                            </Label.GestureRecognizers>
+                    </Label>
+                    <StackLayout HorizontalOptions="FillAndExpand" Padding="16" Margin="0,16,0,0">
+                    <Label Text="Email" HorizontalOptions="StartAndExpand" />
+                    <Entry Text="{Binding UserProfile.Email}" IsEnabled="False" HorizontalOptions="FillAndExpand" />
+                    <Label Text="Name" HorizontalOptions="StartAndExpand" />
+                    <Entry Text="{Binding UserProfile.Name}" HorizontalOptions="FillAndExpand" />
+                        <Label Text="Bio" HorizontalOptions="StartAndExpand" />
+                    <Editor Text="{Binding UserProfile.Bio}" HorizontalOptions="FillAndExpand" />
+                        </StackLayout>
+                </StackLayout>
+
+
+                <Grid Grid.Row="1" x:Name="WriteContainerGrid">
+                    <Grid.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="iOS" Value="0"/>
+                        </OnPlatform>
+                    </Grid.Margin>
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Command="{Binding UpdateProfileCommand}" Text="Save" Margin="16" CornerRadius="24" TextColor="White" BackgroundColor="{StaticResource AccentColor}" />
+                </Grid>
+                
+            </Grid>
+
+        </Grid>
+    </ContentPage.Content>
+</local:BasePage>
+

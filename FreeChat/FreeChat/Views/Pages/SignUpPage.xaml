@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<local:BasePage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:form="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+    xmlns:local="clr-namespace:FreeChat.Views.Pages"
+    xmlns:root="clr-namespace:FreeChat"
+    BindingContext="{x:Static root:AppLocator.SignUpViewModel}"
+    x:Class="FreeChat.Views.Pages.SignUpPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Padding="28,0,28,0" VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="9*" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+                <form:AnimationView
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    AutoPlay="True"
+                    RepeatMode="Infinite"
+                    IsEnabled="True"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Scale="0.8"
+                    Animation="signup.json"/>
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Text="Sign up"
+                    FontSize="36"
+                    FontAttributes="Bold"
+                    />
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Style="{StaticResource FontAwesomeLabel}"
+                    Text="{StaticResource FontAwesomeAt}"
+                    FontSize="Large"
+                    TextColor="LightGray"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+                <Entry
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Placeholder="Email"
+                    Text="{Binding Email}"
+                    />
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="3"
+                    Style="{StaticResource FontAwesomeLabel}"
+                    Text="{StaticResource FontAwesomeUser}"
+                    FontSize="Large"
+                    TextColor="LightGray"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+                <Entry
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    Placeholder="Name"
+                    Text="{Binding Name}"
+                    />
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="4"
+                    Style="{StaticResource FontAwesomeLabel}"
+                    Text="{StaticResource FontAwesomeLock}"
+                    FontSize="Large"
+                    TextColor="LightGray"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+                <Entry
+                    Grid.Column="1"
+                    Grid.Row="4"
+                    Placeholder="Password"
+                    IsPassword="True"
+                    Text="{Binding Password}"
+                    />
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="5"
+                    Style="{StaticResource FontAwesomeLabel}"
+                    Text="{StaticResource FontAwesomeLock}"
+                    FontSize="Large"
+                    TextColor="LightGray"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+                <Entry
+                    Grid.Column="1"
+                    Grid.Row="5"
+                    Placeholder="Confirm Password"
+                    IsPassword="True"
+                    Text="{Binding ConfirmPassword}"
+                    />
+                 <Label Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        TextColor="Red"
+                    Grid.Row="6" Text="{Binding SignUpError}" FontAttributes="Bold" />
+                <Button
+                    Grid.Column="0"
+                    Grid.Row="7"
+                    Grid.ColumnSpan="2"
+                    CornerRadius="12"
+                    Margin="0,16,0,0"
+                    Text="Sign up"
+                    BackgroundColor="#0165FE"
+                    TextColor="White"
+                    Command="{Binding SignUpCommand}"
+                    HorizontalOptions="FillAndExpand" />
+                <FlexLayout
+                    Grid.Column="0"
+                    Grid.Row="8"
+                    JustifyContent="Center"
+                    Grid.ColumnSpan="2">
+                    <Label Text="Joined us before? " FontAttributes="Bold" />
+                    <Label Text="Login" TextColor="{x:StaticResource AccentColor}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigateToSignInCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </FlexLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</local:BasePage>
+

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<local:BasePage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:form="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+    xmlns:root="clr-namespace:FreeChat"
+    xmlns:local="clr-namespace:FreeChat.Views.Pages"
+    BindingContext="{x:Static root:AppLocator.SignInViewModel}"
+    x:Class="FreeChat.Views.Pages.SignInPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Padding="28,0,28,0" VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+                <form:AnimationView
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    AutoPlay="True"
+                    IsEnabled="True"
+                    RepeatMode="Infinite"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Scale="0.7"
+                    Animation="chat.json"/>
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Text="Login"
+                    FontSize="36"
+                    FontAttributes="Bold"
+                    />
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Style="{StaticResource FontAwesomeLabel}"
+                    Text="{StaticResource FontAwesomeAt}"
+                    FontSize="Large"
+                    TextColor="LightGray"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+                <Entry
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Text="{Binding Email}"
+                    Placeholder="Email"
+                    />
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="3"
+                    Style="{StaticResource FontAwesomeLabel}"
+                    Text="{StaticResource FontAwesomeLock}"
+                    FontSize="Large"
+                    TextColor="LightGray"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+                <Entry
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    Placeholder="Password"
+                    Text="{Binding Password}"
+                    IsPassword="True"
+                    
+                    />
+                <Label
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    TextColor="Red"
+                    Grid.Row="4"
+                    Text="{Binding SignInError}"
+                    FontAttributes="Bold" />
+                <Button
+                    Grid.Column="0"
+                    Grid.Row="5"
+                    Grid.ColumnSpan="2"
+                    CornerRadius="12"
+                    Margin="0,16,0,0"
+                    Text="Login"
+                    Command="{Binding SignInCommand}"
+                    BackgroundColor="#0165FE"
+                    TextColor="White"
+                    HorizontalOptions="FillAndExpand" />
+                <FlexLayout
+                    Grid.Column="0"
+                    Grid.Row="6"
+                    JustifyContent="Center"
+                    Grid.ColumnSpan="2">
+                    <Label Text="New to Chat? " FontAttributes="Bold" />
+                    <Label Text="Register" TextColor="{x:StaticResource AccentColor}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigateToSignUpCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </FlexLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</local:BasePage>
+

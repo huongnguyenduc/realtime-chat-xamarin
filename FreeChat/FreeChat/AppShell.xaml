@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       mc:Ignorable="d"
+       xmlns:pages="clr-namespace:FreeChat.Views.Pages"
+       xmlns:textRes="clr-namespace:FreeChat.Resources"
+       Title="FreeChat"
+       Shell.NavBarIsVisible="False"
+       x:Class="FreeChat.AppShell">
+    <TabBar>
+        <ShellContent
+            Title="Splash"
+            ContentTemplate="{DataTemplate pages:SplashPage}" />
+        <ShellContent
+            Title="Sign In"
+            ContentTemplate="{DataTemplate pages:SignInPage}" />
+        <ShellContent
+            Title="Sign Up"
+            ContentTemplate="{DataTemplate pages:SignUpPage}" />
+    </TabBar>
+    <TabBar>
+        <Tab Icon="{FontImage Glyph={StaticResource FontAwesomeComment}, FontFamily={StaticResource FontAwesome}}"
+             Title="{x:Static textRes:TextResources.Messages}">
+            <ShellContent ContentTemplate="{DataTemplate pages:ConversationsPage}" />
+        </Tab>
+        <Tab Icon="{FontImage Glyph={StaticResource FontAwesomeCog}, FontFamily={StaticResource FontAwesome}}"
+             Title="{x:Static textRes:TextResources.Settings}">
+            <ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}" />
+        </Tab>
+    </TabBar>
+
+</Shell>
